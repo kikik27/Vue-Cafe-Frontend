@@ -243,7 +243,7 @@ export default {
           plugins: {
             title: {
               display: true,
-              text: "Menu Terlaris",
+              text: "Pendapatan Perbulan",
             },
           },
           maintainAspectRatio: false,

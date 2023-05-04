@@ -10,7 +10,6 @@ import KasirDashboard from '../views/kasir/Dashboard.vue'
 import RiwayatTransaksi from '../views/kasir/RiwayatTransaksi.vue'
 import Unauthorized from '../views/401.vue'
 import NotFound from '../views/404.vue'
-import print from '../views/kasir/print.vue'
 import AdminDashboard from '../views/admin/Dashboard.vue'
 
 const routes = [
@@ -25,6 +24,9 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Signin,
+    meta: {
+      title: 'login',
+    }
   },
   {
     path: '/admin/',
@@ -143,12 +145,6 @@ const routes = [
       title: 'Unauthorized'
     }
   },
-  {
-    path: '/print',
-    name: 'Print',
-    component: print,
-    props: true
-  },
 ]
 
 const router = createRouter({
@@ -217,59 +213,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
-// router.beforeEach((to, from, next) => {
-//   // Check if the route requires authentication
-//   if (to.meta.requiresAuth) {
-//     // Check if the user is authenticated
-//     store.dispatch('checkAuth').then(() => {
-//       const isAuthenticated = store.state.isAuthenticated;
-//       if (!isAuthenticated) {
-//         // Redirect to login page
-//         next('/login');
-//         return;
-//       }
-//     })
-//     // Check if the route requires admin access
-//     if (to.meta.requiresAdmin) {
-//       store.dispatch('checkAuth').then(() => {
-//         const userRole = store.state.user.role;
-//       if (userRole !== 'admin') {
-//         // Redirect to dashboard page
-//         next('/dashboard');
-//         return;
-//       }
-//       })
-//     }
-//   }
-//   // Continue to the next middleware or route
-//   next();
-// });
-
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     if (!store.state.isAuthenticated) {
-//       next({
-//         path: '/login',
-//         query: { redirect: to.fullPath }
-//       });
-//     } else if (to.matched.some(record => record.meta.requiresPermission)) {
-//       if (!store.state.permissions.includes(to.meta.permission)) {
-//         next({
-//           path: '/403',
-//           query: { redirect: to.fullPath }
-//         });
-//       } else {
-//         next();
-//       }
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-//   console.log(store.state.isAuthenticated);
-//   console.log(store.state.permissions);
-// });
 
 export default router

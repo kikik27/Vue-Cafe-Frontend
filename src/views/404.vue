@@ -6,6 +6,7 @@
         <h1><span>4</span><span>0</span><span>4</span></h1>
       </div>
       <h2>Mohon Maaf Halaman Yang kamu Kunjungi Tidak Dapat Ditemukan</h2>
+      <button @click="$router.go(-1)" class="btn btn-dark">BACK</button>
     </div>
   </div>
 </template>

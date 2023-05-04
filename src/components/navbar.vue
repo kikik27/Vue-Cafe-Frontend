@@ -4,7 +4,7 @@
       class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row"
     >
       <div
-        class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start"
+        class="text-center navbar-brand-wrapper pr-3 d-flex align-items-center justify-content-start"
       >
         <div>
           <a class="navbar-brand brand-logo">
@@ -43,6 +43,14 @@
               <span class="menu-title">Tagihan Pelanggan</span>
             </router-link>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="logout()">
+                <i
+                  class="menu-icon mdi mdi-power text-primary"
+                ></i
+                >Sign Out
+              </a>
+          </li>
         </ul>
         <ul v-if="role == 'admin'" class="navbar-nav">
           <li
@@ -80,16 +88,40 @@
               <span class="menu-title">Data Meja</span>
             </router-link>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="logout()">
+                <i
+                  class="menu-icon mdi mdi-power text-primary"
+                ></i
+                >Sign Out
+              </a>
+          </li>
+        </ul>
+        <ul v-if="role == 'manager'" class="navbar-nav">
           <li
             :class="{
               'nav-item': true,
-              active: isActive(`/${role}/penjualan`),
+              active: isActive(`/${role}/dashboard`),
             }"
           >
-            <router-link class="nav-link" to="/admin/penjualan">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Data Penjualan</span>
-            </router-link>
+            <router-link class="nav-link" to="/manager">
+              <i class="menu-icon mdi mdi-menu"></i>
+              <span class="menu-title">Dashboard</span></router-link
+            >
+          </li>
+          <li :class="{'nav-item': true, 'active': isActive(`/${role}/penjualan`)}">
+          <router-link class="nav-link" to="/manager/penjualan">
+            <i class="menu-icon mdi mdi-chart-line"></i>
+            <span class="menu-title">Data Penjualan</span>
+          </router-link>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="logout()">
+                <i
+                  class="menu-icon mdi mdi-power text-primary"
+                ></i
+                >Sign Out
+              </a>
           </li>
         </ul>
       </div>

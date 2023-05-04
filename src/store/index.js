@@ -34,6 +34,7 @@ export default createStore({
         alert(error.message);
         console.log(error.message)
         commit('setAuthenticated', false);
+        localStorage.removeItem('Token');
       });
     },
     logout({ commit }) {
