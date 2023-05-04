@@ -281,12 +281,23 @@ export default {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     },
     logout() {
-      this.$swal({
+      this.$swal.fire({
+        title: 'Are you sure you want to logout?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Logout',
+        cancelButtonColor: '#d33',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$swal({
         icon: "success",
         title: "Sukses Logout",
       });
       store.dispatch("logout");
       this.$router.push("/login");
+        }
+      })
     },
     UbahProfile() {
       this.Bearer();
